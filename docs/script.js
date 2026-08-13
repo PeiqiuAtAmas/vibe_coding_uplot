@@ -257,7 +257,14 @@ function init() {
   const playPauseBtn = document.getElementById('play-pause-btn')
   if (playPauseBtn) {
     playPauseBtn.addEventListener('click', togglePlayPause)
-    playPauseBtn.textContent = '暫停'
+    // 初始化按鈕狀態（根據 isPlaying 設置）
+    if (isPlaying) {
+      playPauseBtn.textContent = '暫停'
+      playPauseBtn.classList.add('playing')
+    } else {
+      playPauseBtn.textContent = '啟動'
+      playPauseBtn.classList.remove('playing')
+    }
   }
 
   const waveformSelect = document.getElementById('waveform-select')

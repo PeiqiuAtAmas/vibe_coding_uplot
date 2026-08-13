@@ -153,6 +153,7 @@ canvas {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  padding: 1rem 0;
 }
 
 .control-group label {
@@ -267,8 +268,13 @@ input[type='range']::-moz-range-thumb:hover {
   background-color: #0066cc;
 }
 
-.btn-primary.playing {
+/* 播放中狀態 - 綠色 */
+button.playing {
   background-color: #009900;
+}
+
+button.playing:hover {
+  background-color: #007700;
 }
 
 /* 行動版滑桖增強 */
