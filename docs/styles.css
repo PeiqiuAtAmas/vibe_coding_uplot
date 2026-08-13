@@ -55,6 +55,88 @@ main {
   background-color: #242424;
   border-radius: 0.5rem;
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* 全局控制區 */
+.global-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #404040;
+}
+
+/* 通道容器 */
+.channels-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+/* 單個通道區塊 */
+.channel-block {
+  background-color: #1a1a1a;
+  border: 1px solid #404040;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.channel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #333333;
+}
+
+.channel-title {
+  font-weight: 600;
+  font-size: 1rem;
+  flex: 1;
+}
+
+.channel-toggle {
+  padding: 0.5rem 1rem;
+  background-color: #444444;
+  color: #ffffff;
+  border: 1px solid #555555;
+  border-radius: 0.375rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+  min-width: 60px;
+}
+
+.channel-toggle:hover {
+  background-color: #555555;
+}
+
+/* 通道開啟狀態 */
+.channel-toggle.active {
+  background-color: #009900;
+  border-color: #00cc00;
+  color: #ffffff;
+}
+
+.channel-toggle.active:hover {
+  background-color: #007700;
+}
+
+/* 通道控制區 */
+.channel-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 /* 桌面版佈局 (≥1024px) */
@@ -70,8 +152,11 @@ main {
 
   .control-panel {
     flex: 0 0 30%;
-    overflow-y: auto;
     max-height: calc(100vh - 5rem);
+  }
+
+  .channels-container {
+    max-height: calc(100vh - 12rem);
   }
 }
 
@@ -82,21 +167,26 @@ main {
   }
 
   .waveform-section {
-    flex: 0 1 50%;
+    flex: 0 1 55%;
     padding: 1rem;
   }
 
   .control-panel {
-    flex: 0 1 50%;
+    flex: 0 1 45%;
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-content: flex-start;
+    flex-direction: column;
+    max-height: auto;
   }
 
-  .control-group {
-    flex: 1 1 calc(50% - 0.5rem);
-    min-width: 150px;
+  .channels-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    max-height: 100%;
+  }
+
+  .channel-block {
+    padding: 0.75rem;
   }
 }
 
@@ -122,13 +212,18 @@ main {
   .control-panel {
     flex: 0 0 auto;
     padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    max-height: auto;
   }
 
-  .control-group {
-    width: 100%;
+  .channels-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 100%;
+  }
+
+  .channel-block {
+    padding: 0.75rem;
   }
 
   button,
@@ -153,7 +248,6 @@ canvas {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 1rem 0;
 }
 
 .control-group label {
@@ -196,6 +290,12 @@ button:active {
     padding: 1rem;
     min-height: 44px;
     font-size: 1.1rem;
+  }
+
+  .channel-toggle {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
   }
 }
 
