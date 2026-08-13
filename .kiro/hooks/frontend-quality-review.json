@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Frontend quality review",
+      "trigger": "PostFileSave",
+      "matcher": "^docs/.*\\.(html|css|js)$",
+      "action": {
+        "type": "agent",
+        "prompt": "## Frontend Quality Review - 代碼品質檢查\n\n用戶剛剛保存了一個檔案。請對該檔案進行品質檢查，遵循以下標準：\n\n### 檢查項目\n\n1. **HTML 結構與語意標籤**\n   - 是否使用語意化標籤（header, main, section, nav, footer）？\n   - 結構邏輯是否合理？\n   - 是否有無意義的 div 嵌套？\n\n2. **CSS 響應式設計**\n   - 是否支援桌面版 (>1024px) 和手機版 (<768px)？\n   - 是否使用媒體查詢？\n   - 是否使用相對單位 (em, rem, %) 而非硬編碼像素值？\n   - 行動版按鈕是否足夠大（≥44px）？\n\n3. **JavaScript 代碼品質**\n   - 主控台是否有明顯錯誤或警告？\n   - 變數宣告是否規範（const/let）？\n   - 是否有未定義的變數？\n   - 函數邏輯是否清晰、有註解？\n\n4. **資源路徑檢查**\n   - 圖片、CSS、JavaScript 是否使用正確的相對路徑？\n   - 路徑是否都以 `./` 開頭或相對於當前檔案？\n   - 是否有絕對路徑或 `/` 開頭的路徑？\n\n5. **無障礙 (Accessibility) 檢查**\n   - 按鈕和表單元素是否有 ARIA 標籤或清晰的標籤文字？\n   - 圖片是否有 alt 文字？\n   - 顏色對比度是否足夠？\n   - 是否支援鍵盤導航？\n\n6. **功能範疇檢查**\n   - 檔案是否實現了 requirements.md 或 tasks.md 要求的功能？\n   - 是否添加了未要求的功能或過度設計？\n\n7. **技術棧檢查**\n   - 是否只使用了原生 HTML/CSS/JavaScript？\n   - 是否引入了 Node.js、Vite、React、Vue 或其他框架？\n   - 是否調用了後端 API 或使用資料庫？\n   - 是否使用了 npm 套件或 CDN 外部資源？\n   - 是否在全局作用域引入了不必要的庫？\n\n### 輸出格式\n\n如果檢查發現問題，請按以下格式列出：\n\n```\n📄 檔案：[檔案路徑]\n\n🔴 問題 1：[問題類別] - [具體問題描述]\n✅ 建議：[修正方式]\n\n🔴 問題 2：...\n✅ 建議：...\n```\n\n如果檔案檢查無問題，請輸出：\n\n```\n✅ [檔案路徑] - 品質檢查通過，無明顯問題。\n```\n\n### 檢查規則\n\n- **只列出真正的問題**，不要過度挑剔瑣細\n- **優先於 requirements.md 和 tasks.md**，確保符合專案需求\n- **不要自動修改檔案**，只提供建議\n- **不要執行下一個 Task**，只進行檢查\n- **簡潔明了**，避免冗長解釋\n\n### 專案背景\n\n- 專案：網頁示波器 (HTML5 Canvas)\n- 技術棧：純 HTML / CSS / JavaScript\n- 目標：4 個獨立 Task 的實現（參見 tasks.md）\n- 排除：無後端、無框架、無外部套件"
+      }
+    }
+  ]
+}
